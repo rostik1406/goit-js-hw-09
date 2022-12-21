@@ -1,8 +1,11 @@
-import flatpickr from 'flatpickr';
+// Описан в документации
+import flatpickr from "flatpickr";
 
-import 'flatpickr/dist/flatpickr.min.css';
-
+// Дополнительный импорт стилей
+import "flatpickr/dist/flatpickr.min.css";
+// all modules
 import Notiflix from 'notiflix';
+
 
 const text = document.querySelector('#datetime-picker');
 const timerHtml = document.querySelector('.timer');
@@ -20,7 +23,7 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    if (selectedDates[0] < new Date()) {
+if (selectedDates[0] < new Date()) {
       Notiflix.Notify.failure('Please choose a date in the future');
       btnStart.disabled = true;
     } else {
@@ -31,8 +34,9 @@ const options = {
 
 flatpickr(text, options);
 
+
+
 function convertMs(ms) {
-  // Number of milliseconds per unit of time
   const second = 1000;
   const minute = second * 60;
   const hour = minute * 60;
@@ -54,6 +58,7 @@ function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
 }
 
+
 btnStart.addEventListener('click', () => {
   let timer = setInterval(() => {
     let countdown = new Date(text.value) - new Date();
@@ -72,5 +77,6 @@ btnStart.addEventListener('click', () => {
       timerHtml.style.color = 'black';
       clearInterval(timer);
     }
-  });
+  }, );
 });
+
