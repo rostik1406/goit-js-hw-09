@@ -1,9 +1,7 @@
-// Описан в документации
 import flatpickr from 'flatpickr';
 
-// Дополнительный импорт стилей
 import 'flatpickr/dist/flatpickr.min.css';
-// all modules
+
 import Notiflix from 'notiflix';
 
 const text = document.querySelector('#datetime-picker');
@@ -31,10 +29,7 @@ const options = {
   },
 };
 
-// Появился Календарь
 flatpickr(text, options);
-
-// Для подсчета значений используй готовую функцию convertMs, где ms - разница между конечной и текущей датой в миллисекундах.
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
