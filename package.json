@@ -1,17 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Color switcher</title>
-    <link rel="stylesheet" href="css/common.css" />
-  </head>
-  <body>
-    <p><a href="index.html">Go back</a></p>
-
-    <button type="button" data-start>Start</button>
-    <button type="button" data-stop>Stop</button>
-
-    <script src="js/01-color-switcher.js" type="module"></script>
-  </body>
-</html>
+{
+    "name": "parcel-project-template",
+    "version": "2.0.0",
+    "description": "",
+    "homepage": "https://rostik1406.github.io/goit-js-hw-09/",
+    "scripts": {
+        "start": "parcel src/*.html",
+        "build": "parcel build src/*.html --public-url /goit-js-hw-09/"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/goitacademy/parcel-project-template.git"
+    },
+    "keywords": [],
+    "author": "Alexander Repeta <alexander.repeta@gmail.com>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/goitacademy/parcel-project-template/issues"
+    },
+    "dependencies": {
+        "flatpickr": "^4.6.13",
+        "modern-normalize": "^1.1.0",
+        "notiflix": "^3.2.5"
+    },
+    "devDependencies": {
+        "@parcel/transformer-sass": "^2.6.0",
+        "parcel": "^2.6.0",
+        "parcel-reporter-clean-dist": "^1.0.4",
+        "posthtml-include": "^1.7.4"
+    },
+    "browserslist": "> 0.5%, last 2 versions, not dead"
+}
