@@ -1,48 +1,39 @@
-import Notiflix from 'notiflix';
+import { Notify } from 'notiflix';
+const refs = {
+  form: document.querySelector('.form'),
+};
 
-// const btnCreatePromise = document.querySelector('button[type="submit"]');
-const step = document.querySelector('input[name="step"]');
-const delay = document.querySelector('input[name="delay"]');
-const amount = document.querySelector('input[name="amount"]');
-const form = document.querySelector('.form');
+refs.form.addEventListener('submit', onFormSubmit);
 
+function onFormSubmit(e) {
+  e.preventDefault();
+  const { delay, step, amount } = e.target.elements;
+  let delayValue = +delay.value;
+
+  for (let i = 1; i <= +amount.value; i++) {
+    createPromise(i, delayValue)
+      .then(({ position, delay }) => {
+        Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+      })
+      .catch(({ position, delay }) => {
+        Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+      });
+    delayValue += +step.value;
+  }
+  e.target.reset();
+}
 
 function createPromise(position, delay) {
-  const promise = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
+    const shouldResolve = Math.random() > 0.3;
     setTimeout(() => {
-      const shouldResolve = Math.random() > 0.3;
       if (shouldResolve) {
-           // Fulfill
+        // Fulfill
         resolve({ position, delay });
       } else {
-         // Reject
+        // Reject
         reject({ position, delay });
       }
     }, delay);
   });
-  return promise;
 }
-
-form.addEventListener('click', e => {
-  e.preventDefault();
-  let firstDelay = Number(delay.value);
-  let delayStep = Number(step.value);
-
-
-  for (let i = 0; i < amount.value; i++) {
-    createPromise(1 + i, firstDelay + i * delayStep)
-      .then(({ position, delay }) => {
-        Notiflix.Notify.success(
-          `✅ Fulfilled promise ${position} in ${delay}ms`
-        );
-      })
-      .catch(({ position, delay }) => {
-        Notiflix.Notify.failure(
-          `❌ Rejected promise ${position} in ${delay}ms`
-        );
-      });
-  }
-});
-
-
-
